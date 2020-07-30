@@ -1,0 +1,104 @@
+@mixin clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin shadow-hero(){
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=0 );
+}
+
+
+@mixin gradient-v($colorTop, $colorBottom){
+  background: $colorTop; /* Old browsers */
+  background: -moz-linear-gradient(top,  $colorTop 0%, $colorBottom 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  $colorTop 0%,$colorBottom 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  $colorTop 0%,$colorBottom 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$colorTop', endColorstr='$colorBottom',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin gradient-h($colorLeft, $colorRight){
+  background: $colorLeft; /* Old browsers */
+  background: -moz-linear-gradient(left,  $colorLeft 0%, $colorRight 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  $colorLeft 0%,$colorRight 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  $colorLeft 0%,$colorRight 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$colorLeft', endColorstr='$colorRight',GradientType=1 ); /* IE6-9 */
+
+}
+
+@mixin placeholder-style($color){
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+$breakpoints: (
+  'small':  ( min-width:  767px ),
+  'medium': ( min-width:  992px ),
+  'large':  ( min-width: 1200px )
+) !default;
+
+/// Mixin to manage responsive breakpoints
+@mixin breakpoint($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// Remove units from a number
+@function strip-unit($number) {
+  @if type-of($number) == ‘number’ and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+/**
+ * Converts units to rem
+ * @param $number to convert, can have any unit
+ * @param $base html base unit
+ */
+ @function rem($number, $base: 16) {
+  // Just in case the dev don't use pixels
+  $number-unitless: strip-unit($number);
+  $base-unitless: strip-unit($base);
+
+  @return $number-unitless / $base-unitless * 1rem;
+}
