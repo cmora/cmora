@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 import Header from '../../layout/Header';
-
-import './Styles.scss';
+import Loader from '../../base/Loader';
+import Page from '../../../screens/Page';
 
 function App() {
   return (
@@ -15,11 +15,20 @@ function App() {
       <div className="main-wrapper">
         <Header />
         <Switch>
-          <Route path="/about" component={About} />
-          <Route path="/works" component={Works} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/" component={Home} />
+          <Route path="/about">
+            <Page><About /></Page>
+          </Route>
+          <Route path="/works">
+            <Page><Works /></Page>
+          </Route>
+          <Route path="/contact">
+            <Page><Contact /></Page>
+          </Route>
+          <Route path="/">
+            <Page><Home /></Page>
+          </Route>
         </Switch>
+        <Loader loading={false} />
       </div>
     </Router>
   );

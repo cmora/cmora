@@ -9,16 +9,16 @@ const MenuNav = ({
 }) => {
   return (
     <ul className={className}>
-      {links.map(link => {
+      {links.map(({ name, slug }) => {
         return (
-          <li key={link.toLowerCase()}>
+          <li key={slug}>
             <NavLink
               exact
-              to={`/${ link === 'Home' ? '' : link.toLowerCase()}`}
+              to={`/${ slug === 'home' ? '' : slug}`}
               onClick={isMobile ? () => handleNavigation() : null}
               activeClassName="active"
             >
-              {link}
+              {name}
             </NavLink>
           </li>
         )
