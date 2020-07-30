@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getMenu } from '../../../api';
 import { formatMenu } from '../../../api/formatters/';
+import { STATUS } from '../../../constants';
 
 const name = 'menu';
 
@@ -28,13 +29,13 @@ const reducers = {}
 const extraReducers = {
   [getMenuItems.fulfilled]: (state, action) => {
     state.items = action.payload;
-    state.loading = 'success';
+    state.status = STATUS.SUCCESS;
   },
-  [getMenuItems.rejected]: (state, action) => {
-    state.loading = 'error';
+  [getMenuItems.rejected]: state => {
+    state.status = STATUS.ERROR;
   },
-  [getMenuItems.pending]: (state, action) => {
-    state.status = 'loading';
+  [getMenuItems.pending]: state => {
+    state.status = STATUS.LOADING;
   },
 }
 

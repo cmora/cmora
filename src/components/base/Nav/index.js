@@ -3,7 +3,8 @@ import classnames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { isMobile, MobileView } from 'react-device-detect';
 import { getMenuItems } from '../../../store/slices/menu/menu-slice';
-import { menuItems } from '../../../store/slices/menu/menu-selectors';
+import { menuItems, menuStatus } from '../../../store/slices/menu/menu-selectors';
+import { STATUS } from '../../../constants';
 
 import MenuNav from "../../base/MenuNav";
 
@@ -14,14 +15,18 @@ const Nav = () => {
   const [ showMenu, setShowMenu ] = useState(!isMobile);
   const dispatch = useDispatch(getMenuItems);
   const links = useSelector(menuItems);
+  const status = useSelector(menuStatus);
+
 
   useEffect(() => {
     dispatch(getMenuItems());
-  }, [links, dispatch]);
+  }, [dispatch]);
 
   const handleNavClick = () => {
     setShowMenu(prevState => !prevState);
   }
+
+  if (status !== STATUS.SUCCESS) return null;
 
   return (
     <>
