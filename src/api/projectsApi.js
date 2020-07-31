@@ -7,9 +7,10 @@ export const getAllProjects = () => {
 }
 
 export const getFeaturedProjects = () => {
-  // return contentful.entries('content_type=projects&fields.featured=true&limit=4');
   return client.getEntries({
     'content_type': 'projects',
+    'fields.featured': 'true',
+    'limit': 4,
   });
 }
 

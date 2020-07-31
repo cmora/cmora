@@ -8,9 +8,9 @@ import { HERO_SIZES  } from '../../../constants';
 import './Styles.scss';
 
 const HeroContainer = ({
+  children,
   loading,
   size,
-  children,
 }) => {
   return (
     <div

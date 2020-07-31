@@ -1,0 +1,46 @@
+@import '../../../styles/functions/functions';
+
+.button {
+  display: inline-block;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  border: 1px solid $white;
+  color: $white;
+  overflow: hidden;
+  &::after,
+  &::before {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    width: 100%;
+  }
+  &:after {
+    content: attr(data-text);
+    transition: all .5s ease-in-out;
+    z-index: 1;
+    color: $primary-color;
+  }
+  &:before {
+    content: "";
+    display: block;
+    height: 100%;
+    background: $white;
+    transition: all .3s ease-in-out;
+    transform: translate3D(-100%,0,0);
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+      transform: translate3D(0,0,0);
+    }
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}

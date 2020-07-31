@@ -64,7 +64,6 @@ export const formatProjects = ({ items }) => {
 };
 
 export const formatProject = (data) => {
-  console.log(data);
   return {
     client: get(data, 'fields.client'),
     challenge: get(data, 'fields.client'),

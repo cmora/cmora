@@ -12,7 +12,7 @@ import Loader from '../../base/Loader';
 import Page from '../../../screens/Page';
 import Home from '../../../screens/Home';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="main-wrapper">
