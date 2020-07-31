@@ -5,6 +5,7 @@ import './styles/global.scss';
 import store from './store';
 import App from './components/layout/App';
 import * as serviceWorker from './serviceWorker';
+import "slick-carousel/slick/slick.css";
 
 ReactDOM.render(
   <React.StrictMode>

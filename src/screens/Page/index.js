@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { isLoading, loaded } from '../../store/slices/loader/loader-slice';
 
 const Page = ({
-  children
+  children,
 }) => {
 
   const dispatch = useDispatch();
@@ -23,5 +24,9 @@ const Page = ({
     </div>
   )
 }
+
+Page.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default Page;

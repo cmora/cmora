@@ -1,0 +1,10 @@
+@import '../../../styles/functions/functions';
+
+.hero-container {
+  background-color: $primary-color;
+  color: $white;
+  position: relative;
+  &.hero-size-large {
+    height: 100vh;
+  }
+}

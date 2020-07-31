@@ -7,7 +7,10 @@ import {
 
 import Header from '../../layout/Header';
 import Loader from '../../base/Loader';
+
+// Screens
 import Page from '../../../screens/Page';
+import Home from '../../../screens/Home';
 
 function App() {
   return (
@@ -32,10 +35,6 @@ function App() {
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 function About() {

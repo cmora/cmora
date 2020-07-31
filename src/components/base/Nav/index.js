@@ -17,7 +17,6 @@ const Nav = () => {
   const links = useSelector(menuItems);
   const status = useSelector(menuStatus);
 
-
   useEffect(() => {
     dispatch(getMenuItems());
   }, [dispatch]);

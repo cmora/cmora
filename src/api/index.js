@@ -1,5 +1,6 @@
 import { getMenu } from './menuApi';
 import { getPage } from './pageApi';
+import { getAllProjects, getFeaturedProjects, getProject } from './projectsApi';
 
 // export const getSections = () => {
 //   return client.getEntries({
@@ -33,4 +34,7 @@ import { getPage } from './pageApi';
 export {
   getMenu,
   getPage,
+  getAllProjects,
+  getFeaturedProjects,
+  getProject,
 }

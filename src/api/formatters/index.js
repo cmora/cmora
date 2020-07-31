@@ -56,30 +56,34 @@ export const formatExperience = (data) => {
   return experience;
 };
 
-export const formatProjects = (data) => {
+export const formatProjects = ({ items }) => {
   const projects = [];
-  data.map(item => projects.push(formatProject(item)));
+  items.map(item => projects.push(formatProject(item)));
   const orderedByDate = orderBy(projects, elem => elem.publishedDate, 'desc')
-  const groupedByCategory = orderBy(groupBy(orderedByDate, 'category.name'), elem => elem[0].category.order);
-  return groupedByCategory;
+  return orderedByDate;
 };
 
 export const formatProject = (data) => {
+  console.log(data);
   return {
-    company: get(data, 'fields.company'),
-    image: get(data, 'fields.image.fields.file.url'),
+    client: get(data, 'fields.client'),
+    challenge: get(data, 'fields.client'),
+    challengeImage: get(data, 'fields.challengeImage'),
+    date: get(data, 'fields.date'),
+    context: get(data, 'fields.context'),
+    image: get(data, 'fields.featuredImage.fields.file.url'),
     thumbnail: get(data, 'fields.thumbnail.fields.file.url'),
     title: get(data, 'fields.title'),
     url: get(data, 'fields.url'),
-    category: {
-      name: get(data, 'fields.category.fields.name'),
-      order: get(data, 'fields.category.fields.order'),
-      description: get(data, 'fields.category.fields.description'),
-    },
-    slug: slugify(get(data, 'fields.title')),
+    slug: slugify(get(data, 'fields.slug')),
     id: get(data, 'sys.id'),
     body: get(data, 'fields.body'),
     publishedDate: get(data, 'sys.createdAt'),
+    description: get(data, 'fields.description'),
+    gallery: get(data, 'fields.gallery'),
+    role: get(data, 'fields.role'),
+    shortDescription: get(data, 'fields.shortDescription'),
+    website: get(data, 'fields.website'),
   };
 };
 
