@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
+import CustomLink from '../CustomLink';
 
 import './Styles.scss';
 
@@ -22,11 +23,14 @@ const HeroSliderItem = ({
         <div className="row">
           <div className="column small-10 small-offset-1 medium-8 medium-offset-2 large-6 large-offset-3">
             <h2 className="hero-slider-item__title">{ title }</h2>
-            <Button
-              className="hero-slider-item__button"
+            <CustomLink
               to={`/projects/${slug}`}
-              label="VIEW PROJECT"
-            />
+            >
+              <Button
+                className="hero-slider-item__button"
+                label="VIEW PROJECT"
+              />
+            </CustomLink>
           </div>
         </div>
       </div>

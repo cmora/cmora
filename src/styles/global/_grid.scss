@@ -1,5 +1,7 @@
 @import '../functions/functions';
 
+
+
 .row {
 	max-width: rem($container-width);
 	margin-right: auto;
@@ -8,13 +10,31 @@
 	flex-flow: row wrap;
 }
 
+.row .row {
+  margin-left: -(rem($column-gutter-mobile / 2));
+  margin-right: -(rem($column-gutter-mobile / 2));
+}
+
 .column {
 	width: auto;
-	padding-right: rem($column-gutter / 2);
-	padding-left: rem($column-gutter / 2);
+	padding-right: rem($column-gutter-mobile / 2);
+	padding-left: rem($column-gutter-mobile / 2);
 	flex: 1 1 0px;
 	min-width: 0;
 }
+
+@include breakpoint(medium) {
+  .row .row {
+    margin-left: -(rem($column-gutter-desktop / 2));
+    margin-right: -(rem($column-gutter-desktop / 2));
+  }
+
+  .column {
+    padding-right: rem($column-gutter-desktop / 2);
+    padding-left: rem($column-gutter-desktop / 2);
+  }
+}
+
 
 .small-1 {
 	flex: 0 0 8.33333%;
@@ -607,38 +627,3 @@ screen and (min-width: 64em) {
 		max-width: 12.5%;
 	}
 }
-
-// #main-section{
-// 	padding: 30px 0;
-// 	background: #fff;
-// 	@include breakpoint(large) {
-// 		padding: 60px 0 30px;
-// 	}
-// }
-// .page__title{
-// 	text-align: center;
-// }
-// p{
-// 	strong{
-// 		color: $primary-color;
-// 	}
-// }
-// .section-block{
-// 	margin-bottom: 30px;
-// 	@include breakpoint(large) {
-// 		margin-bottom: 50px;
-// 	}
-// }
-// .section-fullwidth{
-// 	padding: 30px 0;
-// }
-// .section--dark{
-// 	background: $primary-color;
-// 	color: #fff;
-// 	h1,h2,h3,h4,h5,h6{
-// 		color: #fff;
-// 	}
-// }
-// .section--light{
-// 	background: #F7F7F7;
-// }

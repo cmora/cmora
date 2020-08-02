@@ -37,20 +37,27 @@ h1, h2, h3, h4, h5, h6 {
   color: $primary-color;
   text-rendering: optimizeLegibility;
   margin-top: 0;
-  margin-bottom: .4em;
+  margin-bottom: rem(18);
   line-height: 1;
 }
 
+p {
+  margin: 0 0 rem(18);
+}
+
 h1 {
-  font-size: rem(32);
+  font-size: rem(38);
+  margin-bottom: rem(20);
 }
 
 h2 {
-  font-size: rem(30);
+  font-size: rem(32);
+  margin-bottom: rem(20);
 }
 
 h3 {
   font-size: rem(22);
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -78,10 +85,12 @@ dl, ol, p, ul {
 @include breakpoint(medium) {
   h1 {
     font-size: rem(54);
+    margin-bottom: rem(30);
   }
 
   h2 {
     font-size: rem(50);
+    margin-bottom: rem(30);
   }
 
   h3 {

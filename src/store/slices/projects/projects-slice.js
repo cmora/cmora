@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getFeaturedProjects } from '../../../api';
+import { getFeaturedProjects, getAllProjects } from '../../../api';
 import { formatProjects } from '../../../api/formatters/';
 import { STATUS } from '../../../constants';
 
@@ -14,9 +14,23 @@ const featuredProjectsCreator = async () => {
   }
 }
 
+const allProjectsCreator = async (limit = 30) => {
+  try {
+    const response = await getAllProjects(limit);
+    return formatProjects(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 const featuredProjects = createAsyncThunk(
   `${name}/featuredProjects`,
   featuredProjectsCreator,
+);
+
+const allProjects = createAsyncThunk(
+  `${name}/allProjects`,
+  allProjectsCreator,
 );
 
 const initialState = {
@@ -48,6 +62,17 @@ const extraReducers = {
   [featuredProjects.pending]: state => {
     state.featured.status = STATUS.LOADING;
   },
+  [allProjects.fulfilled]: (state, action) => {
+    state.all.results = action.payload;
+    state.all.status = STATUS.SUCCESS;
+  },
+  [allProjects.rejected]: state => {
+    state.all.results = [];
+    state.all.status = STATUS.ERROR;
+  },
+  [allProjects.pending]: state => {
+    state.all.status = STATUS.LOADING;
+  },
 }
 
 export const projectsSlice = createSlice({
@@ -62,6 +87,7 @@ export const projectsSlice = createSlice({
  */
 export {
   featuredProjects,
+  allProjects,
 };
 
 export default projectsSlice.reducer;

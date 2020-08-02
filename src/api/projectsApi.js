@@ -1,8 +1,9 @@
 import client from './client';
 
-export const getAllProjects = () => {
+export const getAllProjects = limit => {
   return client.getEntries({
     'content_type': 'projects',
+    'limit': limit,
   });
 }
 

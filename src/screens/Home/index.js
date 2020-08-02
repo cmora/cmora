@@ -6,21 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHomePage } from '../../store/slices/page/page-slice';
 import { getServices } from '../../store/slices/services/services-slice';
 import { getHomePageSelector } from '../../store/slices/page/page-selectors';
-import { servicesResults, servicesStatus as servicesGetStatus } from '../../store/slices/services/services-selectors';
+import { servicesResults } from '../../store/slices/services/services-selectors';
+import { isValidArray } from '../../utils';
 import { STATUS  } from '../../constants';
 
 // Components
 import SectionBlock from '../../components/base/SectionBlock';
 import Services from '../../components/base/Services';
+import Projects from '../../components/base/Projects';
 
 const Home = () => {
   const dispatchHomePage = useDispatch(getHomePage);
   const dispatchServices = useDispatch(getServices);
   const homePage = useSelector(getHomePageSelector);
   const services = useSelector(servicesResults);
-  const servicesStatus = useSelector(servicesGetStatus);
   const isLoadedPage = get(homePage, 'status') === STATUS.SUCCESS;
-
 
   /**
    * Effect to get the home page data
@@ -35,10 +35,10 @@ const Home = () => {
    * Effect to get the services data
    */
   useEffect(() => {
-    if (servicesStatus !== STATUS.SUCCESS) {
+    if (!isValidArray(services)) {
       dispatchServices(getServices());
     }
-  }, [dispatchServices, servicesStatus]);
+  }, [dispatchServices, services]);
 
   if (!isLoadedPage) return null;
 
@@ -63,10 +63,11 @@ const Home = () => {
                 </>
               }
             </SectionBlock>
-            <SectionBlock
-              size="medium"
-            >
+            <SectionBlock size="medium">
               <Services services={services} />
+            </SectionBlock>
+            <SectionBlock title="Last projects">
+              <Projects />
             </SectionBlock>
           </div>
         </div>

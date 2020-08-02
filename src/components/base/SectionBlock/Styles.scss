@@ -3,6 +3,10 @@
 .section-block {
   margin-bottom: 30px;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   &__title {
     text-align: center;
   }

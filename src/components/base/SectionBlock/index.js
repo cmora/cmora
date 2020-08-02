@@ -12,7 +12,7 @@ const SectionBlock = ({
 
   return (
     <div className="section-block">
-      {title && <h1 className="section-block__title">{ title }</h1>}
+      {title && <h2 className="section-block__title">{ title }</h2>}
       {children && (
         <div className="section-block__container">
           <div className="row">

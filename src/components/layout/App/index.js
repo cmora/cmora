@@ -25,6 +25,9 @@ const App = () => {
           <Route path="/projects">
             <Page><Projects /></Page>
           </Route>
+          <Route path="/projects/:slug">
+            <Page><Project /></Page>
+          </Route>
           <Route path="/contact">
             <Page><Contact /></Page>
           </Route>
@@ -44,6 +47,10 @@ function About() {
 }
 
 function Projects() {
+  return <h2>Works</h2>;
+}
+
+function Project() {
   return <h2>Works</h2>;
 }
 
