@@ -1,6 +1,7 @@
 import { getMenu } from './menuApi';
 import { getPage } from './pageApi';
 import { getAllProjects, getFeaturedProjects, getProject } from './projectsApi';
+import { getServices } from './servicesApi';
 
 // export const getSections = () => {
 //   return client.getEntries({
@@ -32,9 +33,10 @@ import { getAllProjects, getFeaturedProjects, getProject } from './projectsApi';
 
 
 export {
-  getMenu,
-  getPage,
   getAllProjects,
   getFeaturedProjects,
+  getMenu,
+  getPage,
   getProject,
+  getServices,
 }

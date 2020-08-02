@@ -1,0 +1,17 @@
+@import '../../../styles/functions/functions';
+
+.services-item {
+  &__icon {
+    color: $primary-color;
+    font-size: rem(60);
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: rem(26);
+  }
+
+  &__subtitle {
+    font-size: rem(18);
+  }
+}

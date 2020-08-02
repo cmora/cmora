@@ -103,3 +103,18 @@ export const formatHomePage = (data) => {
     body: get(data, 'fields.body', null),
   };
 };
+
+export const formatServices = ({ items }) => {
+  const services = [];
+  items.map((item) => {
+    return services.push({
+      icon: get(item, 'fields.icon'),
+      position: get(item, 'fields.position'),
+      subtitle: get(item, 'fields.subtitle'),
+      sumary: get(item, 'fields.sumary'),
+      title: get(item, 'fields.title'),
+    });
+  });
+
+  return orderBy(services, ['position']);
+};

@@ -2,6 +2,10 @@ import flatten from 'lodash/flatten';
 import isArray from 'lodash/isArray';
 import meta, { SITE_URL } from '../config';
 
+export const isValidArray = (array) => {
+  return isArray(array) && array.length > 0;
+}
+
 export const camelize = (str) => {
   return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
     if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
@@ -19,7 +23,7 @@ export const slugify = (text) => {
 };
 
 export const getProjectIDbySlug = (projects, slug) => {
-  if (isArray(projects) && projects.length === 0) return null;
+  if (!isValidArray(projects)) return null;
   let projectID = null;
   const flattenProjects = flatten(projects);
   flattenProjects.forEach((item) => {

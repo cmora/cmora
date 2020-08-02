@@ -7,6 +7,7 @@ import { featuredProjectsResults, featuredProjectsStatus } from '../../../store/
 import HeroContainer from '../../base/HeroContainer';
 import { STATUS, HERO_SIZES } from '../../../constants';
 import HeroSliderItem from './HeroSliderItem';
+import { isValidArray } from '../../../utils';
 
 import './Styles.scss';
 
@@ -16,7 +17,7 @@ const HeroSlider = () => {
   const projects = useSelector(featuredProjectsResults);
 
   useEffect(() => {
-    if (projects.length <= 0) {
+    if (!isValidArray(projects)) {
       dispatch(featuredProjects());
     }
   }, [dispatch, projects]);

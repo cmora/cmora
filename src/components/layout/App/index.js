@@ -21,8 +21,8 @@ const App = () => {
           <Route path="/about">
             <Page><About /></Page>
           </Route>
-          <Route path="/works">
-            <Page><Works /></Page>
+          <Route path="/projects">
+            <Page><Projects /></Page>
           </Route>
           <Route path="/contact">
             <Page><Contact /></Page>
@@ -41,7 +41,7 @@ function About() {
   return <h2>About</h2>;
 }
 
-function Works() {
+function Projects() {
   return <h2>Works</h2>;
 }
 

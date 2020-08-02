@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import './Styles.scss';
@@ -6,7 +7,7 @@ import './Styles.scss';
 const SectionBlock = ({
   title,
   children,
-  centered,
+  size,
 }) => {
 
   return (
@@ -18,8 +19,9 @@ const SectionBlock = ({
             <div className={classnames(
               'column',
               {
-                'medium-10 medium-offset-1 large-8 large-offset-2 align-center': centered,
-                'large-12': !centered,
+                'medium-10 medium-offset-1 large-8 large-offset-2 align-center': size === 'small',
+                'column large-10 large-offset-1 align-center': size === 'medium',
+                'large-12': size === 'large',
               }
             )}>
               { children }
@@ -29,6 +31,16 @@ const SectionBlock = ({
       )}
     </div>
   )
+}
+
+SectionBlock.propTypes = {
+  children: PropTypes.element.isRequired,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  title: PropTypes.string,
+}
+
+SectionBlock.defaultProps = {
+  size: 'large',
 }
 
 export default SectionBlock;

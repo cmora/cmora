@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { findIndex } from 'lodash/findIndex';
 import { getPage } from '../../../api'
 import { formatHomePage } from '../../../api/formatters';
 import { STATUS } from '../../../constants';
