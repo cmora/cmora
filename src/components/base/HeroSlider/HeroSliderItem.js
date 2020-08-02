@@ -24,8 +24,8 @@ const HeroSliderItem = ({
             <h2 className="hero-slider-item__title">{ title }</h2>
             <Button
               className="hero-slider-item__button"
-              label="VIEW PROJECT"
               to={`/projects/${slug}`}
+              label="VIEW PROJECT"
             />
           </div>
         </div>

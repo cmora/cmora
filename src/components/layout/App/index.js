@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Header from '../../layout/Header';
+import Footer from '../../layout/Footer';
 import Loader from '../../base/Loader';
 
 // Screens
@@ -31,6 +32,7 @@ const App = () => {
             <Page><Home /></Page>
           </Route>
         </Switch>
+        <Footer />
         <Loader loading={false} />
       </div>
     </Router>

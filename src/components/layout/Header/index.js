@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import Logo from "../../base/Logo";
+import Logo from '../../base/Logo';
 import Nav from "../../base/Nav";
 import { useSelector } from 'react-redux';
 import { isHeaderSticky } from '../../../store/slices/page/page-selectors';

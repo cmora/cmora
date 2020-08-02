@@ -11,6 +11,7 @@ const Button = ({
   className,
   label,
   to,
+  children,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch(isLoading)
@@ -31,7 +32,7 @@ const Button = ({
       onClick={handleOnClick}
       to={to}
     >
-      {label}
+      {children ? children : label}
     </Link>
   );
 };

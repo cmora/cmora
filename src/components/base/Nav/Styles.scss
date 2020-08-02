@@ -1,9 +1,5 @@
 @import '../../../styles/functions/functions';
 
-.main-nav {
-  overflow: hidden;
-}
-
 .main-nav-mobile {
 	position: fixed;
   left: 0;
@@ -52,13 +48,12 @@
   }
   &__menu {
     opacity: 0;
-    transition: opacity .3s ease,-webkit-transform .4s cubic-bezier(.694,.048,.335,1);
-    transition: opacity .3s ease,transform .4s cubic-bezier(.694,.048,.335,1);
-    transition: opacity .3s ease,transform .4s cubic-bezier(.694,.048,.335,1),-webkit-transform .4s cubic-bezier(.694,.048,.335,1);
+    transition: opacity .3s ease, transform .4s cubic-bezier(.694,.048,.335,1);
     transition-delay: 0s;
     margin: 0;
-    -webkit-transform: translateY(50%);
     transform: translateY(50%);
+    list-style: none;
+    page-break-after: 0;
     li {
       padding: 0 20px;
       font-size: 30px;
@@ -118,7 +113,8 @@
 			font-family: $primary-font;
 			font-weight: 700;
 			font-size: rem(14);
-			a {
+      a,
+      span {
 				display: inline-block;
 				padding: 5px 0;
 				color: #fff;
@@ -141,7 +137,10 @@
 					  transform: translate3d(0, 0, 0);
 					}
 				}
-			}
+      }
+      span {
+        cursor: default;
+      }
     }
 	}
   @include breakpoint(medium) {

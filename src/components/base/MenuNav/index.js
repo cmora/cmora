@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { isMobile } from "react-device-detect";
 import { useHistory } from "react-router-dom";
+import isFunction from 'lodash/isFunction';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../../../store/slices/page/page-slice';
+import { isValidArray } from '../../../utils';
 
 const MenuNav = ({
   className,
@@ -12,11 +14,13 @@ const MenuNav = ({
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { location: { pathname } } = history;
+  const [location, setLocation] = useState(pathname);
 
   const handleOnClick = (e, slug) => {
     e.preventDefault();
     dispatch(isLoading())
-    if (isMobile) {
+    if (isMobile && isFunction(handleNavigation)) {
       handleNavigation();
     }
 
@@ -25,19 +29,37 @@ const MenuNav = ({
     }, 1000);
   };
 
+  useEffect(() => {
+    return history.listen((location) => {
+      setLocation(location.pathname)
+    })
+  },[history])
+
+  if (!isValidArray(links)) return null;
+
+  const getLink = (slug) => {
+    if (!slug) return '/';
+    return `/${ slug === 'home' ? '' : slug}`;
+  }
+
+
   return (
     <ul className={className}>
       {links.map(({ name, slug }) => {
         return (
           <li key={slug}>
-            <NavLink
-              exact
-              to={`/${ slug === 'home' ? '' : slug}`}
-              onClick={e => handleOnClick(e, slug)}
-              activeClassName="active"
-            >
-              {name}
-            </NavLink>
+            {location === getLink(slug) ? (
+              <span className="active">{ name }</span>
+            ) : (
+              <NavLink
+                exact
+                to={getLink(slug)}
+                onClick={e => handleOnClick(e, slug)}
+                activeClassName="active"
+              >
+                { name }
+              </NavLink>
+            )}
           </li>
         )
       })}
