@@ -96,3 +96,10 @@ export const formatSocial = (data) => {
   });
   return social;
 };
+
+export const formatHomePage = (data) => {
+  return {
+    subtitle: get(data, 'fields.subtitle', null),
+    body: get(data, 'fields.body', null),
+  };
+};

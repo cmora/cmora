@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { isLoading, loaded } from '../../store/slices/loader/loader-slice';
+import { loaded } from '../../store/slices/page/page-slice';
 
 const Page = ({
   children,
@@ -10,18 +10,13 @@ const Page = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(loaded());
-    }, 1500);
-    return () => {
-      dispatch(isLoading());
-    }
+    dispatch(loaded());
   });
 
   return (
-    <div>
+    <main className="wrapper-page">
       { children }
-    </div>
+    </main>
   )
 }
 

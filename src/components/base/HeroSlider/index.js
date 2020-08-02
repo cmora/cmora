@@ -16,8 +16,10 @@ const HeroSlider = () => {
   const projects = useSelector(featuredProjectsResults);
 
   useEffect(() => {
-    dispatch(featuredProjects());
-  }, [dispatch]);
+    if (projects.length <= 0) {
+      dispatch(featuredProjects());
+    }
+  }, [dispatch, projects]);
 
   const SLIDER_SETTINGS = {
     arrows: false,

@@ -42,7 +42,7 @@
       }
     }
 
-    @include breakpoint("medium") {
+    @include breakpoint(medium) {
       li {
         margin: 0 20px;
         div {

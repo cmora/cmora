@@ -1,0 +1,17 @@
+@import '../../../styles/functions/functions';
+
+.section-block {
+  margin-bottom: 30px;
+
+  &__title {
+    text-align: center;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  @include breakpoint(medium) {
+    margin-bottom: 50px;
+  }
+}

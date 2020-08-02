@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
-import { isPageLoading } from '../../../store/slices/loader/loader-selectors';
+import { isPageLoading } from '../../../store/slices/page/page-selectors';
 
 // Styles
 import './Styles.scss';

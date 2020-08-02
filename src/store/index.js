@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loaderReducer from './slices/loader/loader-slice';
+import pageReducer from './slices/page/page-slice';
 import menuReducer from './slices/menu/menu-slice';
 import projectsReducer from './slices/projects/projects-slice';
 
 export default configureStore({
   reducer: {
-    loader: loaderReducer,
+    page: pageReducer,
     menu: menuReducer,
     projects: projectsReducer,
   },
