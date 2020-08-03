@@ -9,3 +9,8 @@ export const HERO_SIZES = {
   MEDIUM: 'medium',
   SMALL: 'small',
 };
+
+export const PAGES = {
+  home: 'home-page',
+  projects: 'project-page',
+}

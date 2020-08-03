@@ -1,4 +1,4 @@
-import { get, orderBy, groupBy } from 'lodash';
+import { get, orderBy } from 'lodash';
 import { slugify } from '../../utils';
 
 const formatExperienceDate = (date) => {
@@ -99,8 +99,19 @@ export const formatSocial = (data) => {
 
 export const formatHomePage = (data) => {
   return {
-    subtitle: get(data, 'fields.subtitle', null),
     body: get(data, 'fields.body', null),
+    image: get(data, 'fields.featuredImage.fields.file.url'),
+    subtitle: get(data, 'fields.subtitle', null),
+  };
+};
+
+export const formatProjectPage = (data) => {
+  console.log(data);
+  return {
+    body: get(data, 'fields.body', null),
+    image: get(data, 'fields.featuredImage.fields.file.url'),
+    subtitle: get(data, 'fields.subtitle', null),
+    title: get(data, 'fields.title', null),
   };
 };
 

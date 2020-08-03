@@ -13,7 +13,7 @@ import { STATUS  } from '../../constants';
 // Components
 import SectionBlock from '../../components/base/SectionBlock';
 import Services from '../../components/base/Services';
-import Projects from '../../components/base/Projects';
+import ProjectsList from '../../components/base/ProjectsList';
 
 const Home = () => {
   const dispatchHomePage = useDispatch(getHomePage);
@@ -58,16 +58,14 @@ const Home = () => {
               size="small"
             >
               {bodyHome &&
-                <>
-                  <div dangerouslySetInnerHTML={{__html: documentToHtmlString(bodyHome)}} />
-                </>
+                <div dangerouslySetInnerHTML={{__html: documentToHtmlString(bodyHome)}} />
               }
             </SectionBlock>
             <SectionBlock size="medium">
               <Services services={services} />
             </SectionBlock>
             <SectionBlock title="Last projects">
-              <Projects />
+              <ProjectsList limit={6} />
             </SectionBlock>
           </div>
         </div>

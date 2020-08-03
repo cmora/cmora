@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../../../store/slices/page/page-slice';
 

@@ -11,7 +11,9 @@ import ProjectItem from './ProjectItem';
 
 import './Styles.scss';
 
-const Projects = () => {
+const ProjectsList = ({
+  limit,
+}) => {
   const element = useRef();
   const dispatchProjects = useDispatch(allProjects);
   const projects = useSelector(allProjectsResults);
@@ -20,7 +22,7 @@ const Projects = () => {
     const onchange = (entries) => {
       const el = entries[0];
       if (el && el.isIntersecting && !isValidArray(projects)) {
-        dispatchProjects(allProjects(6));
+        dispatchProjects(allProjects());
         observer.disconnect();
       }
     }
@@ -34,17 +36,19 @@ const Projects = () => {
     return () => observer.disconnect();
   }, [dispatchProjects, projects]);
 
+  const projectsList = projects.slice(0, limit);
+
   return (
     <div
       className="projects-list"
       ref={element}
     >
       <div className="row">
-        {!isValidArray(projects) ? (
+        {!isValidArray(projectsList) ? (
           <LoaderSpiner dark />
         ) : (
           <>
-            {projects.map(s => (
+            {projectsList.map(s => (
               <div className="column small-12 medium-6 large-4">
                 <ProjectItem {...s} />
               </div>
@@ -56,8 +60,12 @@ const Projects = () => {
   );
 };
 
-Projects.propTypes = {
-  services: PropTypes.array.isRequired,
+ProjectsList.propTypes = {
+  limit: PropTypes.number,
 }
 
-export default Projects;
+ProjectsList.defaultProps = {
+  limit: 6,
+}
+
+export default ProjectsList;

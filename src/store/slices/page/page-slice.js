@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getPage } from '../../../api'
-import { formatHomePage } from '../../../api/formatters';
-import { STATUS } from '../../../constants';
+import { formatHomePage, formatProjectPage } from '../../../api/formatters';
+import { STATUS, PAGES } from '../../../constants';
 
 const name = 'page';
 
@@ -14,9 +14,23 @@ const getHomePageCreator = async () => {
   }
 }
 
+const getProjectPageCreator = async () => {
+  try {
+    const response = await getPage('projects');
+    return formatProjectPage(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 const getHomePage = createAsyncThunk(
   `${name}/getHomePage`,
   getHomePageCreator,
+);
+
+const getProjectsPage = createAsyncThunk(
+  `${name}/getProjectsPage`,
+  getProjectPageCreator,
 );
 
 const initialState = {
@@ -41,14 +55,15 @@ const reducers = {
 }
 
 const extraReducers = {
+  // Home page
   [getHomePage.fulfilled]: (state, { payload }) => {
     const page = {
-      id: 'home-page',
+      id: PAGES.home,
       status: STATUS.SUCCESS,
       ...payload
     };
     const { pages } = state;
-    const index = pages.findIndex(p => p.id === 'home-page');
+    const index = pages.findIndex(p => p.id === PAGES.home);
     if (index >= 0 ) {
       state.pages[index] = page;
     } else {
@@ -57,11 +72,11 @@ const extraReducers = {
   },
   [getHomePage.rejected]: state => {
     const page = {
-      id: 'home-page',
+      id: PAGES.home,
       status: STATUS.ERROR,
     };
     const { pages } = state;
-    const index = pages.findIndex(p => p.id === 'home-page');
+    const index = pages.findIndex(p => p.id === PAGES.home);
     if (index >= 0 ) {
       state.pages[index] = page;
     } else {
@@ -70,11 +85,52 @@ const extraReducers = {
   },
   [getHomePage.pending]: state => {
     const page = {
-      id: 'home-page',
+      id: PAGES.home,
       status: STATUS.LOADING,
     };
     const { pages } = state;
-    const index = pages.findIndex(p => p.id === 'home-page');
+    const index = pages.findIndex(p => p.id === PAGES.home);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
+  // Projects page
+  [getProjectsPage.fulfilled]: (state, { payload }) => {
+    const page = {
+      id: PAGES.projects,
+      status: STATUS.SUCCESS,
+      ...payload
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.projects);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
+  [getProjectsPage.rejected]: (state, action) => {
+    const page = {
+      id: PAGES.projects,
+      status: STATUS.ERROR,
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.projects);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
+  [getProjectsPage.pending]: state => {
+    const page = {
+      id: PAGES.projects,
+      status: STATUS.LOADING,
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.projects);
     if (index >= 0 ) {
       state.pages[index] = page;
     } else {
@@ -98,6 +154,7 @@ export const {
 
 export {
   getHomePage,
+  getProjectsPage,
 }
 
 export default pageSlice.reducer;

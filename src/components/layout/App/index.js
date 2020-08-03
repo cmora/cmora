@@ -12,6 +12,7 @@ import Loader from '../../base/Loader';
 // Screens
 import Page from '../../../screens/Page';
 import Home from '../../../screens/Home';
+import Projects from '../../../screens/Projects';
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
           <Route path="/projects">
             <Page><Projects /></Page>
           </Route>
-          <Route path="/projects/:slug">
+          <Route path="/project/:slug">
             <Page><Project /></Page>
           </Route>
           <Route path="/contact">
@@ -44,10 +45,6 @@ const App = () => {
 
 function About() {
   return <h2>About</h2>;
-}
-
-function Projects() {
-  return <h2>Works</h2>;
 }
 
 function Project() {

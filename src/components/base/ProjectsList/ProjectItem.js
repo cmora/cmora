@@ -18,7 +18,7 @@ const ProjectItem = ({
     >
       <CustomLink
         className="project-item__link"
-        to={`/projects/${slug}`}
+        to={`/project/${slug}`}
       >
         <div
           className="project-item__media"

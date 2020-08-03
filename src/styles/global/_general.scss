@@ -46,7 +46,7 @@ p {
 }
 
 h1 {
-  font-size: rem(38);
+  font-size: rem(36);
   margin-bottom: rem(20);
 }
 
@@ -84,7 +84,7 @@ dl, ol, p, ul {
 
 @include breakpoint(medium) {
   h1 {
-    font-size: rem(54);
+    font-size: rem(50);
     margin-bottom: rem(30);
   }
 
