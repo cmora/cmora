@@ -12,7 +12,7 @@ const Services = ({
 
   return (
     <div className="row">
-      {services.map((s, i) => <ServiceItem key={s.title} index={i} {...s} />)}
+      {services.map((s, i) => <ServiceItem key={s.id} index={i} {...s} />)}
     </div>
   );
 };

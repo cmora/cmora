@@ -45,9 +45,9 @@ const MenuNav = ({
 
   return (
     <ul className={className}>
-      {links.map(({ name, slug }) => {
+      {links.map(({ name, slug, id }) => {
         return (
-          <li key={slug}>
+          <li key={id}>
             {location === getLink(slug) ? (
               <span className="active">{ name }</span>
             ) : (

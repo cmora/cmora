@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getPage } from '../../../api'
-import { formatHomePage, formatProjectPage } from '../../../api/formatters';
+import {
+  formatHomePage,
+  formatProjectPage,
+  formatAboutPage,
+} from '../../../api/formatters';
 import { STATUS, PAGES } from '../../../constants';
 
 const name = 'page';
@@ -23,6 +27,15 @@ const getProjectPageCreator = async () => {
   }
 }
 
+const getAboutPageCreator = async () => {
+  try {
+    const response = await getPage('about');
+    return formatAboutPage(response);
+  } catch (error) {
+    throw error;
+  }
+}
+
 const getHomePage = createAsyncThunk(
   `${name}/getHomePage`,
   getHomePageCreator,
@@ -31,6 +44,11 @@ const getHomePage = createAsyncThunk(
 const getProjectsPage = createAsyncThunk(
   `${name}/getProjectsPage`,
   getProjectPageCreator,
+);
+
+const getAboutPage = createAsyncThunk(
+  `${name}/getAboutPage`,
+  getAboutPageCreator,
 );
 
 const initialState = {
@@ -137,6 +155,47 @@ const extraReducers = {
       state.pages = [...state.pages, page];
     }
   },
+  // About page
+  [getAboutPage.fulfilled]: (state, { payload }) => {
+    const page = {
+      id: PAGES.about,
+      status: STATUS.SUCCESS,
+      ...payload
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.about);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
+  [getAboutPage.rejected]: (state, action) => {
+    const page = {
+      id: PAGES.about,
+      status: STATUS.ERROR,
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.about);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
+  [getAboutPage.pending]: state => {
+    const page = {
+      id: PAGES.about,
+      status: STATUS.LOADING,
+    };
+    const { pages } = state;
+    const index = pages.findIndex(p => p.id === PAGES.about);
+    if (index >= 0 ) {
+      state.pages[index] = page;
+    } else {
+      state.pages = [...state.pages, page];
+    }
+  },
 }
 
 export const pageSlice = createSlice({
@@ -155,6 +214,7 @@ export const {
 export {
   getHomePage,
   getProjectsPage,
+  getAboutPage,
 }
 
 export default pageSlice.reducer;

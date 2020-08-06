@@ -1,9 +1,15 @@
 import flatten from 'lodash/flatten';
 import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
+import isEmpty from 'lodash/isEmpty';
 import meta, { SITE_URL } from '../config';
 
 export const isValidArray = (array) => {
   return isArray(array) && array.length > 0;
+}
+
+export const isValidObject = (object) => {
+  return isObject(object) && !isEmpty(object);
 }
 
 export const camelize = (str) => {

@@ -13,4 +13,5 @@ export const HERO_SIZES = {
 export const PAGES = {
   home: 'home-page',
   projects: 'project-page',
+  about: 'about-page',
 }

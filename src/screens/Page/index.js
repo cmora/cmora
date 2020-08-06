@@ -10,7 +10,13 @@ const Page = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loaded());
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
+    setTimeout(()=> {
+      dispatch(loaded());
+    }, 500);
   });
 
   return (

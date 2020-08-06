@@ -18,7 +18,7 @@ const Projects = () => {
 
 
   /**
-   * Effect to get the home page data
+   * Effect to get the projects page data
    */
   useEffect(() => {
     if (!isLoadedPage) {
@@ -37,11 +37,11 @@ const Projects = () => {
       <div className="main-container">
         <div className="row">
           <div className="column large-12">
-            <SectionBlock title={get(projectPage, 'title')} size="medium">
               {get(projectPage, 'body') &&
-                <div dangerouslySetInnerHTML={{__html: documentToHtmlString(get(projectPage, 'body'))}} />
+                <SectionBlock title={get(projectPage, 'title')} size="medium">
+                  <div dangerouslySetInnerHTML={{__html: documentToHtmlString(get(projectPage, 'body'))}} />
+                </SectionBlock>
               }
-            </SectionBlock>
             <ProjectsList />
           </div>
         </div>

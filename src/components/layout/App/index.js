@@ -13,6 +13,7 @@ import Loader from '../../base/Loader';
 import Page from '../../../screens/Page';
 import Home from '../../../screens/Home';
 import Projects from '../../../screens/Projects';
+import About from '../../../screens/About';
 
 const App = () => {
   return (
@@ -41,10 +42,6 @@ const App = () => {
       </div>
     </Router>
   );
-}
-
-function About() {
-  return <h2>About</h2>;
 }
 
 function Project() {

@@ -38,7 +38,10 @@ const ProjectItem = ({
 };
 
 ProjectItem.propTypes = {
-  services: PropTypes.array.isRequired,
+  client: PropTypes.string,
+  shortDescription: PropTypes.string,
+  slug: PropTypes.string,
+  image: PropTypes.string,
 }
 
 export default ProjectItem;

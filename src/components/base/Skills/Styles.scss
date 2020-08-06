@@ -1,0 +1,40 @@
+@import '../../../styles/functions/functions';
+
+.skills-block {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.skill-item {
+  margin-bottom: 20px;
+
+  &__name {
+    margin: 0 0 10px;
+    padding-right: 20px;
+  }
+
+  &__percentage {
+    width: 100%;
+    height: 8px;
+    border: 1px solid $primary-color;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    .progres-bar {
+      position: absolute;
+      height: 100%;
+      background: #1C1D25;
+    }
+  }
+
+  @include breakpoint(medium) {
+    display: flex;
+    align-items: center;
+
+    &__name {
+      margin: 0;
+      width: 250px;
+    }
+  }
+}

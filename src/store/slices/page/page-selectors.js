@@ -8,3 +8,6 @@ export const getHomePageSelector = state => {
 export const getProjectPageSelector = state => {
   return state.page.pages.find(page => page.id === PAGES.projects);
 };
+export const getAboutPageSelector = state => {
+  return state.page.pages.find(page => page.id === PAGES.about);
+};

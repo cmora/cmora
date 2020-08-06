@@ -48,9 +48,9 @@ const ProjectsList = ({
           <LoaderSpiner dark />
         ) : (
           <>
-            {projectsList.map(s => (
-              <div className="column small-12 medium-6 large-4">
-                <ProjectItem {...s} />
+            {projectsList.map(p => (
+              <div key={p.id} className="column small-12 medium-6 large-4">
+                <ProjectItem {...p} />
               </div>
             ))}
           </>
