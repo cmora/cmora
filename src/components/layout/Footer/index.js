@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Logo from '../../base/Logo';
 import MenuNav from '../../base/MenuNav';
 import { menuItems } from '../../../store/slices/menu/menu-selectors';
-import * as LABEL from '../../../constants/labels';
+import { COPY_RIGHT } from '../../../constants/labels';
 
 // Styles
 import './Styles.scss';
@@ -25,7 +25,7 @@ const Footer = () => {
           </nav>
         </div>
       </div>
-      <div className="main-footer__copy">{LABEL.COPY_RIGHT}</div>
+      <div className="main-footer__copy">{COPY_RIGHT}</div>
     </footer>
   );
 };

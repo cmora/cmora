@@ -15,3 +15,7 @@ export const PAGES = {
   projects: 'project-page',
   about: 'about-page',
 }
+
+export const SLUGS = {
+  home: 'home',
+}

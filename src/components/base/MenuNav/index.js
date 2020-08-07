@@ -6,6 +6,7 @@ import isFunction from 'lodash/isFunction';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../../../store/slices/page/page-slice';
 import { isValidArray } from '../../../utils';
+import { SLUGS } from '../../../constants';
 
 const MenuNav = ({
   className,
@@ -25,7 +26,7 @@ const MenuNav = ({
     }
 
     setTimeout(() => {
-      history.push(`/${ slug === 'home' ? '' : slug}`);
+      history.push(`/${ slug === SLUGS.home ? '' : slug}`);
     }, 1000);
   };
 
@@ -39,7 +40,7 @@ const MenuNav = ({
 
   const getLink = (slug) => {
     if (!slug) return '/';
-    return `/${ slug === 'home' ? '' : slug}`;
+    return `/${ slug === SLUGS.home ? '' : slug}`;
   }
 
 

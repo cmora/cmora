@@ -8,3 +8,5 @@ export const RELEASE = 'Release';
 export const LAST_PROJECTS = 'Last Projects';
 export const COPY_RIGHT = 'Copyright © Cristhian Mora. All rights reserved - 2020';
 export const WORK_EXPERIENCE = 'Work Experience';
+export const PERSONAL_SKILLS = 'Personal Skills';
+export const PROFESSIONAL_SKILLS = 'Professional Skills';
