@@ -11,6 +11,7 @@
   border: 1px solid $white;
   color: $white;
   overflow: hidden;
+  text-transform: uppercase;
   cursor: pointer;
   &::after,
   &::before {

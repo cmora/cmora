@@ -8,7 +8,8 @@ import { getServices } from '../../store/slices/services/services-slice';
 import { getHomePageSelector } from '../../store/slices/page/page-selectors';
 import { servicesResults } from '../../store/slices/services/services-selectors';
 import { isValidArray } from '../../utils';
-import { STATUS  } from '../../constants';
+import { STATUS, HERO_SIZES  } from '../../constants';
+import * as LABEL from '../../constants/labels';
 
 // Components
 import SectionBlock from '../../components/base/SectionBlock';
@@ -55,16 +56,16 @@ const Home = () => {
           <div className="column large-12">
             <SectionBlock
               title={subtitleHome}
-              size="small"
+              size={HERO_SIZES.SMALL}
             >
               {bodyHome &&
                 <div dangerouslySetInnerHTML={{__html: documentToHtmlString(bodyHome)}} />
               }
             </SectionBlock>
-            <SectionBlock size="medium">
+            <SectionBlock size={HERO_SIZES.MEDIUM}>
               <Services services={services} />
             </SectionBlock>
-            <SectionBlock title="Last projects">
+            <SectionBlock title={LABEL.LAST_PROJECTS}>
               <ProjectsList limit={6} />
             </SectionBlock>
           </div>

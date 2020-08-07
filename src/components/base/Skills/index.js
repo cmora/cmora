@@ -8,7 +8,7 @@ import SkillItem from './SkillItem';
 import './Styles.scss';
 
 
-const WorkExperience = ({
+const Skills = ({
   status,
   skills,
 }) => {
@@ -24,11 +24,11 @@ const WorkExperience = ({
           <div className="row">
             <div className="column small-12 medium-6">
               <h3>Professional Skills</h3>
-              {professional.map(item => <SkillItem hey={item.id} {...item} />)}
+              {professional.map(item => <SkillItem key={item.id} {...item} />)}
             </div>
             <div className="column small-12 medium-6">
               <h3>Personal Skills</h3>
-              {personal.map(item => <SkillItem hey={item.id} {...item} />)}
+              {personal.map(item => <SkillItem key={item.id} {...item} />)}
             </div>
           </div>
         </div>
@@ -37,4 +37,4 @@ const WorkExperience = ({
   );
 };
 
-export default WorkExperience;
+export default Skills;

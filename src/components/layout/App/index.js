@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,8 +14,14 @@ import Page from '../../../screens/Page';
 import Home from '../../../screens/Home';
 import Projects from '../../../screens/Projects';
 import About from '../../../screens/About';
+import Project from '../../../screens/Project';
 
 const App = () => {
+
+  useEffect(() => {
+    console.info("Designed and Developed By Cristhian Mora");
+  }, []);
+
   return (
     <Router>
       <div className="main-wrapper">
@@ -42,10 +48,6 @@ const App = () => {
       </div>
     </Router>
   );
-}
-
-function Project() {
-  return <h2>Works</h2>;
 }
 
 function Contact() {

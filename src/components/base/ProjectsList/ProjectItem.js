@@ -11,6 +11,7 @@ const ProjectItem = ({
   shortDescription,
   slug,
   image,
+  id,
 }) => {
   return (
     <div
@@ -19,6 +20,7 @@ const ProjectItem = ({
       <CustomLink
         className="project-item__link"
         to={`/project/${slug}`}
+        params={{ projectId: id }}
       >
         <div
           className="project-item__media"

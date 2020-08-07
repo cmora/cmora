@@ -15,6 +15,24 @@
     text-align: center;
   }
 
+  &.section--full-width {
+    width: 100%;
+    padding: 40px 0;
+
+    @include breakpoint(medium) {
+      padding: 60px 0;
+    }
+  }
+
+  &.section--dark {
+    background-color: $primary-color;
+    color: $white;
+
+    .section-block__title {
+      color: $white;
+    }
+  }
+
   @include breakpoint(medium) {
     margin-bottom: 50px;
   }

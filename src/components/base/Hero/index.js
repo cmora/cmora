@@ -51,18 +51,24 @@ const Hero = ({
               {label && (
                 <h5 className="hero-block__label">{ label }</h5>
               )}
-              {isValidArray(extraInfo) && (
-                <div className="hero-block__extra">
-                  {extraInfo.map(({ title, desc }) => (
-                    <div key={title}>
-                      <strong>{title}</strong>
-                      { desc }
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
+          {isValidArray(extraInfo) && (
+            <div className="hero-block__extra-container">
+              <div className="row">
+                <div className="column">
+                  <div className="hero-block__extra">
+                    {extraInfo.map(({ title, desc }) => (
+                      <div className="hero-block__extra-item" key={title}>
+                        {title && (<strong>{title} {desc && ' / '}</strong>)}
+                        {desc && desc}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </HeroContainer>

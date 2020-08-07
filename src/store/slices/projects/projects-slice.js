@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getFeaturedProjects, getAllProjects } from '../../../api';
-import { formatProjects } from '../../../api/formatters/';
+import { getFeaturedProjects, getAllProjects, getProject } from '../../../api';
+import { formatProjects, formatProject } from '../../../api/formatters/';
 import { STATUS } from '../../../constants';
 
 const name = 'projects';
@@ -23,6 +23,15 @@ const allProjectsCreator = async (limit = 30) => {
   }
 }
 
+const getProjectBySlugCreator = async (slug) => {
+  try {
+    const response = await getProject(slug);
+    return formatProject(response.items[0]);
+  } catch (error) {
+    throw error;
+  }
+}
+
 const featuredProjects = createAsyncThunk(
   `${name}/featuredProjects`,
   featuredProjectsCreator,
@@ -31,6 +40,11 @@ const featuredProjects = createAsyncThunk(
 const allProjects = createAsyncThunk(
   `${name}/allProjects`,
   allProjectsCreator,
+);
+
+const getProjectBySlug = createAsyncThunk(
+  `${name}/getProjectBySlug`,
+  getProjectBySlugCreator,
 );
 
 const initialState = {
@@ -42,13 +56,17 @@ const initialState = {
     results: [],
     status: null,
   },
-  active: {
-    results: null,
-    project: {},
-  },
+  loaded: {
+    results: [],
+    activeIndex: null,
+  }
 }
 
-const reducers = {}
+const reducers = {
+  setActiveIndex: (state, action) => {
+    state.loaded.activeIndex = action.payload;
+  }
+}
 
 const extraReducers = {
   [featuredProjects.fulfilled]: (state, action) => {
@@ -73,6 +91,12 @@ const extraReducers = {
   [allProjects.pending]: state => {
     state.all.status = STATUS.LOADING;
   },
+  [getProjectBySlug.fulfilled]: (state, action) => {
+    const projects = [...state.loaded.results, action.payload];
+    const index = projects.findIndex(p => p.id === action.payload.id);
+    state.loaded.results = projects;
+    state.loaded.activeIndex = index >= 0 ? index : 0;
+  },
 }
 
 export const projectsSlice = createSlice({
@@ -88,6 +112,11 @@ export const projectsSlice = createSlice({
 export {
   featuredProjects,
   allProjects,
+  getProjectBySlug,
 };
+
+export const {
+  setActiveIndex,
+} = projectsSlice.actions;
 
 export default projectsSlice.reducer;

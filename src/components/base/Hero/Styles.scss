@@ -41,7 +41,6 @@
   &__container {
     width: 100%;
     margin-top: 30px;
-    position: relative;
     z-index: 1;
   }
 
@@ -63,5 +62,29 @@
     margin-top: 15px;
     text-transform: uppercase;
     margin: 0 auto;
+  }
+
+  &__extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-container {
+      position: absolute;
+      width: 100%;
+      bottom: 8%;
+    }
+
+    &-item {
+      font-size: rem(18);
+      font-family: $primary-font;
+      color: $font-color;
+      text-transform: uppercase;
+      font-weight: 400;
+      strong {
+        font-weight: 700;
+        color: $white;
+      }
+    }
   }
 }

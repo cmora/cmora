@@ -1,7 +1,7 @@
-import { get, orderBy, groupBy } from 'lodash';
+import { get, orderBy } from 'lodash';
 import { slugify } from '../../utils';
 
-const formatExperienceDate = (date) => {
+export const formatDate = (date) => {
   if (!date) return null;
 
   const newDate = new Date(date);
@@ -51,8 +51,8 @@ export const formatExperience = ({ items }) => {
       companyLogo: get(item, 'fields.companyLogo.fields.file.url'),
       sumary: get(item, 'fields.sumary'),
       position: get(item, 'fields.position'),
-      from: formatExperienceDate(get(item, 'fields.from')),
-      to: formatExperienceDate(get(item, 'fields.to')),
+      from: formatDate(get(item, 'fields.from')),
+      to: formatDate(get(item, 'fields.to')),
     });
   });
   return experience;

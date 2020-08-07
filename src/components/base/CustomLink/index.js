@@ -9,6 +9,7 @@ const CustomLink = ({
   className,
   to,
   children,
+  state,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch(isLoading)
@@ -18,7 +19,10 @@ const CustomLink = ({
     dispatch(isLoading())
 
     setTimeout(() => {
-      history.push(to);
+      history.push({
+        pathname: to,
+        state,
+      });
     }, 1000);
   };
 

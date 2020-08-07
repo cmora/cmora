@@ -1,0 +1,10 @@
+export const GALLERY_TITLE = 'Gallery';
+export const PROJECT_TITLE = 'The Project';
+export const VISIT_PROJECT = 'Visit project';
+export const VIEW_PROJECT = 'View project';
+export const ROLE = 'Role';
+export const CONTEXT = 'Context';
+export const RELEASE = 'Release';
+export const LAST_PROJECTS = 'Last Projects';
+export const COPY_RIGHT = 'Copyright © Cristhian Mora. All rights reserved - 2020';
+export const WORK_EXPERIENCE = 'Work Experience';

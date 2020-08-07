@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import CustomLink from '../CustomLink';
+import * as LABEL from '../../../constants/labels'
 
 import './Styles.scss';
 
@@ -28,7 +29,7 @@ const HeroSliderItem = ({
             >
               <Button
                 className="hero-slider-item__button"
-                label="VIEW PROJECT"
+                label={LABEL.VIEW_PROJECT}
               />
             </CustomLink>
           </div>

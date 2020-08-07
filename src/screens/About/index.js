@@ -10,6 +10,7 @@ import { experienceResults, experienceStatus } from '../../store/slices/experien
 import { skillsResults, skillsStatus } from '../../store/slices/skills/skills-selectors';
 import { STATUS, HERO_SIZES  } from '../../constants/index';
 import { isValidArray, isValidObject } from '../../utils';
+import * as LABEL from '../../constants/labels';
 
 // Components
 import Hero from '../../components/base/Hero';
@@ -56,6 +57,8 @@ const About = () => {
     }
   }, [dispatchSkills, fullSkillsResults]);
 
+  console.log(aboutPage);
+
   return (
     <>
       <Hero
@@ -67,10 +70,10 @@ const About = () => {
       <div className="main-container">
         <div className="row">
           <div className="column large-12">
-            <SectionBlock title={get(aboutPage, 'title')} size="small">
+            <SectionBlock title={get(aboutPage, 'title')} size={HERO_SIZES.SMALL}>
               <div dangerouslySetInnerHTML={{__html: documentToHtmlString(get(aboutPage, 'body'))}} />
             </SectionBlock>
-            <SectionBlock title="Work Experience">
+            <SectionBlock title={LABEL.WORK_EXPERIENCE}>
               <WorkExperience status={workExperienceStatus} experience={workExperience} />
             </SectionBlock>
             <SectionBlock>
