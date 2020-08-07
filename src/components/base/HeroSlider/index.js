@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Slider from "react-slick";
 import { useDispatch, useSelector } from 'react-redux';
-import get from 'lodash/get';
 import { featuredProjects } from '../../../store/slices/projects/projects-slice';
 import { featuredProjectsResults, featuredProjectsStatus } from '../../../store/slices/projects/projects-selectors';
 import HeroContainer from '../../base/HeroContainer';
@@ -28,7 +27,7 @@ const HeroSlider = () => {
       const item = projects[i];
       return (
         <div>
-          <span>{ get(item, 'client') }</span>
+          <span>{ item?.client }</span>
         </div>
       );
     },
@@ -46,7 +45,7 @@ const HeroSlider = () => {
       size={HERO_SIZES.LARGE}
     >
       <Slider className="slider-wrapper" {...SLIDER_SETTINGS}>
-        {projects.map(item => <HeroSliderItem key={get(item, 'title')} {...item} />)}
+        {projects.map(item => <HeroSliderItem key={item?.title} {...item} />)}
       </Slider>
     </HeroContainer>
   );

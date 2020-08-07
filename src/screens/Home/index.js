@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import get from 'lodash/get';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import HeroSlider from '../../components/base/HeroSlider';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +20,7 @@ const Home = () => {
   const dispatchServices = useDispatch(getServices);
   const homePage = useSelector(getHomePageSelector);
   const services = useSelector(servicesResults);
-  const isLoadedPage = get(homePage, 'status') === STATUS.SUCCESS;
+  const isLoadedPage = homePage?.status === STATUS.SUCCESS;
 
   /**
    * Effect to get the home page data

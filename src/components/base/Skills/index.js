@@ -1,5 +1,4 @@
 import React from 'react';
-import get from 'lodash/get';
 import { STATUS } from '../../../constants';
 import LoaderSpiner from '../LoaderSpiner';
 import { isValidObject } from '../../../utils';
@@ -12,8 +11,8 @@ const Skills = ({
   status,
   skills,
 }) => {
-  const professional = get(skills, 'professional');
-  const personal = get(skills, 'personal');
+  const professional = skills?.professional;
+  const personal = skills?.personal;
 
   return (
     <div className="skills-block">

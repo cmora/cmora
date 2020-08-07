@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import get from 'lodash/get';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjectsPage } from '../../store/slices/page/page-slice';
@@ -14,8 +13,7 @@ import SectionBlock from '../../components/base/SectionBlock';
 const Projects = () => {
   const dispatchProjectPage = useDispatch(getProjectsPage);
   const projectPage = useSelector(getProjectPageSelector);
-  const isLoadedPage = get(projectPage, 'status') === STATUS.SUCCESS;
-
+  const isLoadedPage = projectPage?.status === STATUS.SUCCESS;
 
   /**
    * Effect to get the projects page data
@@ -30,16 +28,16 @@ const Projects = () => {
     <>
       <Hero
         size={HERO_SIZES.MEDIUM}
-        loading={get(projectPage, 'status') === STATUS.LOADING}
-        title={get(projectPage, 'subtitle')}
-        image={get(projectPage, 'image')}
+        loading={projectPage?.status === STATUS.LOADING}
+        title={projectPage?.subtitle}
+        image={projectPage?.image}
       />
       <div className="main-container">
         <div className="row">
           <div className="column large-12">
-              {get(projectPage, 'body') &&
-                <SectionBlock title={get(projectPage, 'title')} size="medium">
-                  <div dangerouslySetInnerHTML={{__html: documentToHtmlString(get(projectPage, 'body'))}} />
+              {projectPage?.body &&
+                <SectionBlock title={projectPage?.title} size="medium">
+                  <div dangerouslySetInnerHTML={{__html: documentToHtmlString(projectPage?.body)}} />
                 </SectionBlock>
               }
             <ProjectsList />

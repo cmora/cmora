@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import get from 'lodash/get';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAboutPage } from '../../store/slices/page/page-slice';
@@ -27,7 +26,7 @@ const About = () => {
   const workExperienceStatus = useSelector(experienceStatus);
   const fullSkillsStatus = useSelector(skillsStatus);
   const fullSkillsResults = useSelector(skillsResults);
-  const isLoadedPage = get(aboutPage, 'status') === STATUS.SUCCESS;
+  const isLoadedPage = aboutPage?.status === STATUS.SUCCESS;
 
 
   /**
@@ -63,15 +62,15 @@ const About = () => {
     <>
       <Hero
         size={HERO_SIZES.MEDIUM}
-        loading={get(aboutPage, 'status') === STATUS.LOADING}
-        title={get(aboutPage, 'subtitle')}
-        image={get(aboutPage, 'image')}
+        loading={aboutPage?.status === STATUS.LOADING}
+        title={aboutPage?.subtitle}
+        image={aboutPage?.image}
       />
       <div className="main-container">
         <div className="row">
           <div className="column large-12">
-            <SectionBlock title={get(aboutPage, 'title')} size={HERO_SIZES.SMALL}>
-              <div dangerouslySetInnerHTML={{__html: documentToHtmlString(get(aboutPage, 'body'))}} />
+            <SectionBlock title={aboutPage?.title} size={HERO_SIZES.SMALL}>
+              <div dangerouslySetInnerHTML={{__html: documentToHtmlString(aboutPage?.body)}} />
             </SectionBlock>
             <SectionBlock title={LABEL.WORK_EXPERIENCE}>
               <WorkExperience status={workExperienceStatus} experience={workExperience} />
