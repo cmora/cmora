@@ -13,9 +13,9 @@ import * as LABEL from '../../constants/labels';
 // Components
 import Hero from '../../components/base/Hero';
 import SectionBlock from '../../components/base/SectionBlock';
-import WorkExperience from '../../components/base/WorkExperience';
-import Skills from '../../components/base/Skills';
+import Gallery from '../../components/base/Gallery';
 import Button from '../../components/base/Button';
+import ProjectChallenge from '../../components/base/ProjectChallenge';
 
 const Project = () => {
 
@@ -63,7 +63,6 @@ const Project = () => {
     }]
   }
 
-
   return (
     <>
       <Hero
@@ -95,12 +94,24 @@ const Project = () => {
       <div className="main-container">
         <div className="row">
           <div className="column large-12">
-            <SectionBlock
-              title={LABEL.GALLERY_TITLE}
-              size={HERO_SIZES.SMALL}
-            >
-              <p>asa</p>
-            </SectionBlock>
+            {project?.gallery && (
+              <SectionBlock
+                title={LABEL.GALLERY_TITLE}
+                size={HERO_SIZES.FULL}
+              >
+                <Gallery items={project?.gallery} />
+              </SectionBlock>
+            )}
+            {project?.challenge && (
+              <SectionBlock
+                size={HERO_SIZES.FULL}
+              >
+                <ProjectChallenge
+                  text={project?.challenge}
+                  image={project?.challengeImage?.fields?.file?.url}
+                />
+              </SectionBlock>
+            )}
           </div>
         </div>
       </div>

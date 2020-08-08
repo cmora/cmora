@@ -1,0 +1,25 @@
+@import '../../../styles/functions/functions';
+
+.project-challenge {
+
+  &__text {
+    @include breakpoint(medium) {
+      margin-top: 50px;
+    }
+  }
+
+  &__image {
+    margin: 20px 0;
+    img {
+      width: 100%;
+    }
+
+    @include breakpoint(medium) {
+      margin: 0;
+    }
+
+    @include breakpoint(large) {
+      padding: 0 10%;
+    }
+  }
+}

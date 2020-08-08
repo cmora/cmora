@@ -7,7 +7,7 @@ import { getWorkExperience } from '../../store/slices/experience/experience-slic
 import { getSkills } from '../../store/slices/skills/skills-slice';
 import { experienceResults, experienceStatus } from '../../store/slices/experience/experience-selectors';
 import { skillsResults, skillsStatus } from '../../store/slices/skills/skills-selectors';
-import { STATUS, HERO_SIZES  } from '../../constants/index';
+import { STATUS, HERO_SIZES, RESUME_FILE  } from '../../constants/index';
 import { isValidArray, isValidObject } from '../../utils';
 import * as LABEL from '../../constants/labels';
 
@@ -77,6 +77,20 @@ const About = () => {
             </SectionBlock>
             <SectionBlock>
               <Skills status={fullSkillsStatus} skills={fullSkillsResults} />
+            </SectionBlock>
+            <SectionBlock
+              size={HERO_SIZES.SMALL}
+              centered
+            >
+              <a
+                className="button secondary"
+                data-text={LABEL.DOWNLOAD_MY_RESUME}
+                href={RESUME_FILE}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {LABEL.DOWNLOAD_MY_RESUME}
+              </a>
             </SectionBlock>
           </div>
         </div>

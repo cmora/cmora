@@ -11,7 +11,6 @@ const HeroSliderItem = ({
   slug,
   title,
 }) => {
-
   return (
     <div className="hero-slider-item">
       <div

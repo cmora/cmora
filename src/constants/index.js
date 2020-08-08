@@ -1,8 +1,4 @@
-export const STATUS = {
-  LOADING: 'loading',
-  ERROR: 'error',
-  SUCCESS: 'success',
-};
+export const RESUME_FILE = 'http://www.cristhianmora.com';
 
 export const HERO_SIZES = {
   LARGE: 'large',
@@ -11,11 +7,17 @@ export const HERO_SIZES = {
 };
 
 export const PAGES = {
+  about: 'about-page',
   home: 'home-page',
   projects: 'project-page',
-  about: 'about-page',
 }
 
 export const SLUGS = {
   home: 'home',
 }
+
+export const STATUS = {
+  ERROR: 'error',
+  LOADING: 'loading',
+  SUCCESS: 'success',
+};

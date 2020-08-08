@@ -18,6 +18,7 @@
   &.section--full-width {
     width: 100%;
     padding: 40px 0;
+    margin-bottom: 0;
 
     @include breakpoint(medium) {
       padding: 60px 0;

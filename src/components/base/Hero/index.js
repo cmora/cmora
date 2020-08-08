@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import debounce from 'lodash/debounce';
+import React from 'react';
 import HeroContainer from '../../base/HeroContainer';
 import { isValidArray } from '../../../utils';
 
@@ -13,20 +12,6 @@ const Hero = ({
   extraInfo,
   image,
 }) => {
-
-  const [bgPosition, setBgPosition] = useState(0);
-  const velocityBG = 0.6;
-
-  const handleScroll = debounce(e => {
-    const sp = window.scrollY;
-    setBgPosition(Math.round((sp) * velocityBG));
-  }, 8);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
   return (
     <HeroContainer
       loading={loading}
@@ -38,7 +23,6 @@ const Hero = ({
             className="hero-block__image"
             style={{
               backgroundImage: `url(${image})`,
-              backgroundPositionY: `${bgPosition}px`,
             }}
           />
         )}

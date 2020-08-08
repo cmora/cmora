@@ -1,5 +1,5 @@
 import { get, orderBy } from 'lodash';
-import { slugify } from '../../utils';
+import { slugify, isValidArray } from '../../utils';
 
 export const formatDate = (date) => {
   if (!date) return null;
@@ -65,10 +65,22 @@ export const formatProjects = ({ items }) => {
   return orderedByDate;
 };
 
+const formatGallery = (data) => {
+  if (isValidArray(data)) {
+    return data.map(item => ({
+      image: get(item, 'fields.file.url'),
+      title: get(item, 'fields.file.title'),
+      id: get(item, 'sys.id'),
+    }));
+  }
+
+  return [];
+};
+
 export const formatProject = (data) => {
   return {
     client: get(data, 'fields.client'),
-    challenge: get(data, 'fields.client'),
+    challenge: get(data, 'fields.challenge'),
     challengeImage: get(data, 'fields.challengeImage'),
     date: get(data, 'fields.date'),
     context: get(data, 'fields.context'),
@@ -81,12 +93,13 @@ export const formatProject = (data) => {
     body: get(data, 'fields.body'),
     publishedDate: get(data, 'sys.createdAt'),
     description: get(data, 'fields.description'),
-    gallery: get(data, 'fields.gallery'),
+    gallery: formatGallery(get(data, 'fields.gallery')),
     role: get(data, 'fields.role'),
     shortDescription: get(data, 'fields.shortDescription'),
     website: get(data, 'fields.website'),
   };
 };
+
 
 export const formatSocial = (data) => {
   const social = [];
