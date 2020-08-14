@@ -78,6 +78,7 @@ const formatGallery = (data) => {
 };
 
 export const formatProject = (data) => {
+  if (!data) return null;
   return {
     client: get(data, 'fields.client'),
     challenge: get(data, 'fields.challenge'),

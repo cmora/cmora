@@ -1,9 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getFeaturedProjects, getAllProjects, getProject } from '../../../api';
-import { formatProjects, formatProject } from '../../../api/formatters/';
+import { getFeaturedProjects, getAllProjects } from '../../../api';
+import { formatProjects } from '../../../api/formatters/';
+import { isValidArray } from '../../../utils';
 import { STATUS } from '../../../constants';
 
 const name = 'projects';
+
+const getFormattedProjects = (projects, slug) => {
+  const formattedProjects = projects.map((p, i) => ({
+    ...p,
+    prevProject: projects[i-1],
+    nextProject: projects[i+1],
+  }));
+
+  const activeIndex =  formattedProjects.findIndex(p => p.slug === slug);
+
+  return {
+    projects: formattedProjects,
+    activeIndex,
+  };
+}
 
 const featuredProjectsCreator = async () => {
   try {
@@ -23,10 +39,28 @@ const allProjectsCreator = async (limit = 30) => {
   }
 }
 
-const getProjectBySlugCreator = async (slug) => {
+const getProjectBySlugCreator = async (slug, { getState }) => {
   try {
-    const response = await getProject(slug);
-    return formatProject(response.items[0]);
+    const { projects: { all: { results: projects } } } = getState();
+    if (!isValidArray(projects)) {
+      const rawProjects = await getAllProjects();
+      const newProjects = formatProjects(rawProjects);
+
+      const { projects: formattedProjects, activeIndex } = getFormattedProjects(newProjects, slug);
+
+      return {
+        projects: formattedProjects,
+        activeIndex,
+      };
+    }
+
+    const { projects: formattedProjects, activeIndex } = getFormattedProjects(projects, slug);
+
+    return {
+      projects: formattedProjects,
+      activeIndex,
+    };
+
   } catch (error) {
     throw error;
   }
@@ -57,7 +91,6 @@ const initialState = {
     status: null,
   },
   loaded: {
-    results: [],
     activeIndex: null,
   }
 }
@@ -92,10 +125,9 @@ const extraReducers = {
     state.all.status = STATUS.LOADING;
   },
   [getProjectBySlug.fulfilled]: (state, action) => {
-    const projects = [...state.loaded.results, action.payload];
-    const index = projects.findIndex(p => p.id === action.payload.id);
-    state.loaded.results = projects;
-    state.loaded.activeIndex = index >= 0 ? index : 0;
+    state.loaded.activeIndex = action.payload.activeIndex;
+    state.all.results = action.payload.projects;
+    state.all.status = STATUS.SUCCESS;
   },
 }
 

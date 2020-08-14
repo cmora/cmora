@@ -16,7 +16,6 @@ export const getFeaturedProjects = () => {
 }
 
 export const getProject = (slug) => {
-  // return contentful.entries('content_type=projects&fields.slug='+slug+'&limit=1');
   return client.getEntries({
     'content_type': 'projects',
     'fields.slug': slug,

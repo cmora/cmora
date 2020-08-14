@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import get from 'lodash/get';
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentProjectSelector, allProjectsResults, loadedProjectsSelector } from '../../store/slices/projects/projects-selectors';
+import { currentProjectSelector, allProjectsResults } from '../../store/slices/projects/projects-selectors';
 import { getProjectBySlug, setActiveIndex } from '../../store/slices/projects/projects-slice';
+import { loaded } from '../../store/slices/page/page-slice';
 import { formatDate } from '../../api/formatters';
 import { HERO_SIZES  } from '../../constants/index';
 import * as LABEL from '../../constants/labels';
@@ -16,35 +14,46 @@ import SectionBlock from '../../components/base/SectionBlock';
 import Gallery from '../../components/base/Gallery';
 import Button from '../../components/base/Button';
 import ProjectChallenge from '../../components/base/ProjectChallenge';
+import ProjectNavigation from '../../components/base/ProjectNavigation';
 
 const Project = () => {
 
   const dispatch = useDispatch();
   const project = useSelector(currentProjectSelector);
-  const projects = useSelector(loadedProjectsSelector);
+  const projects = useSelector(allProjectsResults);
   const { slug } = useParams();
 
   /**
    * Effect to get the about page data
    */
   useEffect(() => {
-    if (!project) {
+    if (!project || project?.slug !== slug) {
       const index = projects.findIndex(p => p.slug === slug);
       if (index > 0) {
         dispatch(setActiveIndex(index));
       } else {
         dispatch(getProjectBySlug(slug));
       }
+      window.scroll({
+        top: 0,
+        left: 0,
+      });
+      setTimeout(() => {
+        dispatch(loaded());
+      }, 500);
     }
   }, [dispatch, project, projects, slug]);
 
+  /**
+   * Cleaning project
+   */
   useEffect(() => {
     return () => {
       dispatch(setActiveIndex(null));
     }
   }, [dispatch]);
 
-  console.log(project)
+  console.log(project);
 
   let extraInfo = null;
 
@@ -112,6 +121,10 @@ const Project = () => {
                 />
               </SectionBlock>
             )}
+            <ProjectNavigation
+              prev={project?.prevProject}
+              next={project?.nextProject}
+            />
           </div>
         </div>
       </div>
