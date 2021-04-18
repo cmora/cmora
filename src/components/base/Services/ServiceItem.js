@@ -11,7 +11,7 @@ const ServiceItem = ({
   icon,
 }) => {
   return (
-    <div className="services-item column small-12 medium-4">
+    <div className="services-item column small-12 medium-4 wow fadeInUp">
       {icon && (
         <i className={`services-item__icon fa ${icon}`} aria-hidden="true"></i>
       )}

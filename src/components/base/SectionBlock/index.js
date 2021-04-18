@@ -17,6 +17,7 @@ const SectionBlock = ({
     <div className={
       classnames(
         'section-block',
+        'wow fadeIn',
         {
           'section--full-width': full,
           'section--dark': dark,

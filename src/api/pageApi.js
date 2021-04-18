@@ -1,10 +1,10 @@
 import client from './client';
 
 const PAGES_ID = {
-  'home': '7s3E4u7IQg0w6YeQMS2eO8',
-  'about': '6J7fBuzqY8QW2e8Im0SYqU',
-  'contact': '7tp4JrfKeI6I2IME8gceS2',
-  'projects': '60KJAaHVjaE2UqUouA2gcg',
+  'home': '6iTJ8mOrPsMX8Rm5BON9sS',
+  'about': '2shRMmOQSxwo8ecUVhHROG',
+  'contact': '52QyCW5YNhO6RHy1xfr6j8',
+  'projects': '5xXyTsa24xX3D9SaVchfMw',
 };
 
 export const getPage = (page) => {

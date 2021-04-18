@@ -19,12 +19,12 @@ const HeroSliderItem = ({
           backgroundImage: `url(${image})`
         }}
       />
-      <div className="hero-slider-item__container">
+      <div className="hero-slider-item__container wow fadeIn">
         <div className="row">
           <div className="column small-10 small-offset-1 medium-8 medium-offset-2 large-6 large-offset-3">
             <h2 className="hero-slider-item__title">{ title }</h2>
             <CustomLink
-              to={`/projects/${slug}`}
+              to={`/project/${slug}`}
             >
               <Button
                 className="hero-slider-item__button"

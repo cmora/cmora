@@ -18,7 +18,7 @@ const ProjectItem = ({
       className="project-item"
     >
       <CustomLink
-        className="project-item__link"
+        className="project-item__link wow fadeInUp"
         to={`/project/${slug}`}
         params={{ projectId: id }}
       >

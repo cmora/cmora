@@ -53,7 +53,6 @@ const Project = () => {
     }
   }, [dispatch]);
 
-  console.log(project);
 
   let extraInfo = null;
 
@@ -121,10 +120,6 @@ const Project = () => {
                 />
               </SectionBlock>
             )}
-            <ProjectNavigation
-              prev={project?.prevProject}
-              next={project?.nextProject}
-            />
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const WorkExperience = ({
   sumary,
 }) => {
   return (
-    <div className="work-experience__item">
+    <div className="work-experience__item wow fadeInUp">
       <div className="row">
         <div className="column small-12 medium-4 large-3">
           {company && (

@@ -8,7 +8,7 @@ const SkillItem = ({
   percentage,
 }) => {
   return (
-    <div className="skill-item">
+    <div className="skill-item wow fadeIn">
       {name && (
         <h6 className="skill-item__name">{ name }</h6>
       )}

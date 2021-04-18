@@ -1,9 +1,160 @@
 @import '../../../styles/functions/functions';
 
 .project-navigation {
-  &__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: $gray-light-alt;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    &::before {
+      transform: translate3D(0,0,0);
+    }
+  }
+
+  &::before {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(28,29,37,.95);
+    width: 100%;
+    height: 100%;
+    transition: all .2s ease-in-out;
+    transform: translate3D(0,-100%,0);
+  }
+
+  > .row {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__link {
+    padding: 20px 0;
+    display: block;
+    width: 100%;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid $primary-color;
+      margin: 0 auto 5px;
+      transform: rotate(-45deg);
+      transition: all .2s ease-in-out;
+      position: absolute;
+      top: 50%;
+      margin-top: -14px;
+    }
+
+    &.prev-nav {
+      padding-left: 30px;
+      text-align: left;
+
+      &::before {
+        left: 5px;
+        border-bottom: 0;
+        border-right: 0;
+      }
+    }
+    &.next-nav {
+      padding-right: 30px;
+      text-align: right;
+
+      &::before {
+        right: 5px;
+        border-top: 0;
+        border-left: 0;
+      }
+    }
+  }
+
+  &__label {
+    font-size: rem(16);
+    margin: 0;
+    color: $primary-color;
+  }
+
+  &__client {
+    margin: 0;
+    color: $font-color;
+  }
+
+  &__title {
+    display: none;
+  }
+
+  @include breakpoint(medium) {
+    &::before {
+      display: block;
+    }
+
+    &:hover {
+
+      .project-navigation__label {
+        color: $white;
+      }
+      .project-navigation__title {
+        color: $white;
+      }
+
+      .project-navigation__link {
+        &::before {
+          border-color: $white;
+        }
+      }
+
+    }
+
+    &__link {
+      padding-top: 25px;
+      padding-bottom: 25px;
+
+      &.prev-nav {
+        padding-left: 50px;
+      }
+      &.next-nav {
+        padding-right: 50px;
+      }
+
+      &::before {
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+
+        &.prev-nav {
+          &::before {
+            transform: rotate(-45deg) translate3d(-10px, -10px, 0);
+          }
+        }
+
+        &.next-nav {
+          &::before {
+            transform: rotate(-45deg) translate3d(10px, 10px, 0);
+          }
+        }
+
+      }
+    }
+
+    &__label {
+      transition: all .3s;
+    }
+
+    &__title {
+      display: block;
+      margin: 10px 0;
+      line-height: 1;
+      font-family: $primary-font;
+      font-weight: 700;
+      font-size: rem(32);
+      color: $primary-color;
+      transition: all .3s;
+    }
+
   }
 }

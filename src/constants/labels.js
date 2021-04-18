@@ -12,3 +12,5 @@ export const ROLE = 'Role';
 export const VIEW_PROJECT = 'View project';
 export const VISIT_PROJECT = 'Visit project';
 export const WORK_EXPERIENCE = 'Work Experience';
+export const PREVIOUS_PROJECT = 'Previous Project';
+export const NEXT_PROJECT = 'Next Project';

@@ -6,6 +6,10 @@ import store from './store';
 import App from './components/layout/App';
 import * as serviceWorker from './serviceWorker';
 import "slick-carousel/slick/slick.css";
+import WOW from "wow.js";
+
+const wow = new WOW();
+wow.init();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -56,8 +56,6 @@ const About = () => {
     }
   }, [dispatchSkills, fullSkillsResults]);
 
-  console.log(aboutPage);
-
   return (
     <>
       <Hero
@@ -83,7 +81,7 @@ const About = () => {
               centered
             >
               <a
-                className="button secondary"
+                className="button secondary wow fadeIn"
                 data-text={LABEL.DOWNLOAD_MY_RESUME}
                 href={RESUME_FILE}
                 rel="noopener noreferrer"

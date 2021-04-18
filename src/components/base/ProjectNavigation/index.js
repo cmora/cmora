@@ -9,38 +9,40 @@ const ProjectNavigation = ({
   next,
   prev,
 }) => {
-  console.log(next);
-  console.log(prev);
   return (
     <div className="project-navigation">
       <div className="row">
-        <div className="column">
-          <div className="project-challenge__text">
-            <div className="project-navigation__container">
-              {prev && (
-                <CustomLink
-                  className="project-navigation__link"
-                  to={`/project/${prev.slug}`}
-                >
-                  <h6 className="project-navigation__title">Previous project</h6>
-                  {prev?.client && (
-                    <p className="project-navigation__client">{prev.client}</p>
-                  )}
-                </CustomLink>
+        <div className="column small-6">
+          {prev && (
+            <CustomLink
+              className="project-navigation__link prev-nav"
+              to={`/project/${prev.slug}`}
+            >
+              <h6 className="project-navigation__label">{LABEL.PREVIOUS_PROJECT}</h6>
+              {prev?.title && (
+                <p className="project-navigation__title">{prev.title}</p>
               )}
-              {next && (
-                <CustomLink
-                  className="project-navigation__link"
-                  to={`/project/${next.slug}`}
-                >
-                  <h6 className="project-navigation__title">Next project</h6>
-                  {next?.client && (
-                    <p className="project-navigation__client">{next.client}</p>
-                  )}
-                </CustomLink>
+              {prev?.client && (
+                <p className="project-navigation__client">{prev.client}</p>
               )}
-            </div>
-          </div>
+            </CustomLink>
+          )}
+        </div>
+        <div className="column small-6">
+          {next && (
+            <CustomLink
+              className="project-navigation__link next-nav"
+              to={`/project/${next.slug}`}
+            >
+              <h6 className="project-navigation__label">{LABEL.NEXT_PROJECT}</h6>
+              {next?.title && (
+                <p className="project-navigation__title">{next.title}</p>
+              )}
+              {next?.client && (
+                <p className="project-navigation__client">{next.client}</p>
+              )}
+            </CustomLink>
+          )}
         </div>
       </div>
     </div>

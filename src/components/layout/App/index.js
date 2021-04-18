@@ -4,10 +4,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import {  useSelector } from 'react-redux';
 
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import Loader from '../../base/Loader';
+import ProjectNavigation from '../../base/ProjectNavigation';
+
+import { currentProjectSelector } from '../../../store/slices/projects/projects-selectors';
 
 // Screens
 import Page from '../../../screens/Page';
@@ -21,6 +25,10 @@ const App = () => {
   useEffect(() => {
     console.info("Designed and Developed By Cristhian Mora");
   }, []);
+
+  const project = useSelector(currentProjectSelector);
+
+  console.log(project)
 
   return (
     <Router>
@@ -43,6 +51,12 @@ const App = () => {
             <Page><Home /></Page>
           </Route>
         </Switch>
+        {project && (
+          <ProjectNavigation
+            prev={project?.prevProject}
+            next={project?.nextProject}
+          />
+        )}
         <Footer />
         <Loader loading={false} />
       </div>
